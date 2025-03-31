@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: all-downloader-backend
+    env: node
+    buildCommand: npm install
+    startCommand: node src/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+      - key: INSTAGRAM_COOKIE
+        sync: false
+      - key: RATE_LIMIT_MAX
+        value: 100
+      - key: RATE_LIMIT_WINDOW
+        value: 900000
+      - key: CACHE_TTL
+        value: 300000
+    healthCheckPath: /api/health
+    autoDeploy: true 
